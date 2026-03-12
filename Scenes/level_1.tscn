@@ -7,7 +7,6 @@
 [node name="Main" type="Node2D"]
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
-position = Vector2(247, -105)
 texture = ExtResource("1_8ffim")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
