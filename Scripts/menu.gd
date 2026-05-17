@@ -4,6 +4,7 @@ extends Control
 
 func _on_play_button_pressed() -> void:
 	PlayerStats.score = 0
+	PlayerStats.health = 5
 	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
 
 

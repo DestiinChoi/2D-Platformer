@@ -13,8 +13,8 @@ func _ready() -> void:
 	
 	player.on_update_health.connect(_update_hearts)
 	player.on_update_score.connect(_update_score)
-	
-	_update_hearts(player.health)
+	var new_health = PlayerStats.health
+	_update_hearts(new_health)
 	_update_score(PlayerStats.score)
 
 func _update_hearts(health : int):
@@ -22,7 +22,7 @@ func _update_hearts(health : int):
 		hearts[i].visible = i < health
 	
 func _update_score(score : int):
-	score_text.text = "Score: " + str(score)
+	score_text.text = str(score)
 
 
 

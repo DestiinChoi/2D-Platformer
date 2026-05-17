@@ -6,13 +6,14 @@ var bob_speed : float = 5.0
 
 @onready var start_pos : Vector2 = global_position
 @onready var sprite : Sprite2D = $Sprite
+@onready var coinspin : AnimationPlayer = $AnimationPlayer
 
 
 func _physics_process(delta: float) -> void:
 	var time = Time.get_unix_time_from_system()
 	
 	# rotate
-	sprite.scale.x = sin(time * rotate_speed)
+	coinspin.play("spin")
 	
 	# bob up and down
 	var y_pos = ((1 + sin(time * bob_speed)) / 2) * bob_height

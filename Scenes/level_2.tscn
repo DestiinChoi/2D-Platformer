@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://v4y3k3nglc6a" path="res://Scenes/end_flag.tscn" id="7_vcilj"]
 [ext_resource type="PackedScene" uid="uid://cw7lp67vp5x13" path="res://Scenes/menu.tscn" id="8_2mgoq"]
 
-[node name="Main" type="Node2D"]
+[node name="level_2" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
 script = ExtResource("1_055b2")
