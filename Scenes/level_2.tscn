@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=4 uid="uid://c8ta1wr1gs2vo"]
 
-[ext_resource type="Script" uid="uid://b8qko3r2kqddy" path="res://Scripts/background_parallax.gd" id="1_055b2"]
+[ext_resource type="Script" uid="uid://b8qko3r2kqddy" path="res://Scripts/foreground_parallax.gd" id="1_055b2"]
 [ext_resource type="Texture2D" uid="uid://bpkkj4i0lidm8" path="res://Sprites/Backgrounds/backgroundDesert.png" id="2_055b2"]
 [ext_resource type="TileSet" uid="uid://bphy4st8ym4ie" path="res://Sprites/Tiles/new_tile_set.tres" id="3_uhnj4"]
 [ext_resource type="PackedScene" uid="uid://dv0g1jn3n7ini" path="res://Scenes/player.tscn" id="4_42uki"]
 [ext_resource type="PackedScene" uid="uid://u2b4k6a5qm08" path="res://Scenes/enemy.tscn" id="5_t7v2y"]
 [ext_resource type="PackedScene" uid="uid://bj2wjre1h6or3" path="res://Scenes/coin.tscn" id="6_ait6c"]
 [ext_resource type="PackedScene" uid="uid://v4y3k3nglc6a" path="res://Scenes/end_flag.tscn" id="7_vcilj"]
-[ext_resource type="PackedScene" uid="uid://cw7lp67vp5x13" path="res://Scenes/menu.tscn" id="8_2mgoq"]
+[ext_resource type="PackedScene" uid="uid://cnncl5gv36lae" path="res://Scenes/level_3.tscn" id="8_2mgoq"]
 
 [node name="level_2" type="Node2D"]
 
