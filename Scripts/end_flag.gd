@@ -8,4 +8,5 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 		
 	PlayerStats.health = 5
-	get_tree().change_scene_to_packed(scene_to_load)
+	get_tree().call_deferred("change_scene_to_packed", scene_to_load)
+	# get_tree().change_scene_to_packed(scene_to_load)

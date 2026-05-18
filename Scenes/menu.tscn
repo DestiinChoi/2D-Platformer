@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw7lp67vp5x13"]
+[gd_scene load_steps=8 format=3 uid="uid://cw7lp67vp5x13"]
 
-[ext_resource type="Texture2D" uid="uid://daddmg1hkc27d" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://c0b5rey1xt1gw" path="res://Scripts/menu.gd" id="1_xhh6f"]
+[ext_resource type="Texture2D" uid="uid://backa3wc7ct5q" path="res://Sprites/Backgrounds/sunsetbackground.png" id="2_jsrd8"]
+[ext_resource type="FontFile" uid="uid://cqnf72prfo7pk" path="res://font/Round9x13.ttf" id="3_cayip"]
+[ext_resource type="Texture2D" uid="uid://cfyqwiml8ovvg" path="res://Sprites/Backgrounds/hills4.png" id="3_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://gkxsspnc4hr0" path="res://Sprites/Backgrounds/clouds5.png" id="3_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://bjjvbnle7qoof" path="res://Sprites/Backgrounds/clouds6.png" id="4_jsrd8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1rerr"]
-font_size = 50
+font = ExtResource("3_cayip")
+font_size = 90
 font_color = Color(0, 0, 0, 1)
 
 [node name="Menu" type="Control"]
@@ -16,18 +21,61 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xhh6f")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Sky" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -249.0
-offset_bottom = 255.0
+offset_top = -61.0
+offset_bottom = 443.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 576)
-texture = ExtResource("1_1rerr")
+texture = ExtResource("2_jsrd8")
 expand_mode = 4
+stretch_mode = 6
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -268.0
+offset_bottom = 236.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 576)
+texture = ExtResource("3_wbdvm")
+expand_mode = 4
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -342.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 576)
+texture = ExtResource("3_wwsa2")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="Background3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -493.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 576)
+texture = ExtResource("4_jsrd8")
+expand_mode = 4
+stretch_mode = 6
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -36,10 +84,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -247.5
-offset_top = -117.0
-offset_right = 247.5
-offset_bottom = -48.0
+offset_left = -532.0
+offset_top = -308.0
+offset_right = 531.0
+offset_bottom = -173.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "2D Platformer Game"
@@ -55,11 +103,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -102.0
-offset_top = -0.5
+offset_top = 129.0
 offset_right = 102.0
-offset_bottom = 63.5
+offset_bottom = 193.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cayip")
 text = "PLAY"
 
 [node name="QuitButton" type="Button" parent="."]
@@ -70,11 +119,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -102.0
-offset_top = 75.5
+offset_top = 205.0
 offset_right = 102.0
-offset_bottom = 139.5
+offset_bottom = 269.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_cayip")
 text = "QUIT"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

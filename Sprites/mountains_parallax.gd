@@ -6,21 +6,3 @@ var parallax : float = 0.5
 func _process(delta):
 	global_position.x = player.global_position.x * parallax
 	global_position.y = player.global_position.y
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#

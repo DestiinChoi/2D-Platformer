@@ -28,7 +28,8 @@ func _physics_process(delta):
 	# gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
+	elif is_on_floor():
+		velocity.y = 0
 	# get move input
 	move_input = Input.get_axis("move_left", "move_right")
 	
@@ -75,8 +76,10 @@ func _process(_delta):
 
 func manage_animation():
 	if not anim.current_animation == "dmg":
-		if not is_on_floor():
+		if velocity.y < 0:
 			anim.play("jump")
+		elif velocity.y > 0:
+			anim.play("fall")
 		elif move_input != 0:
 			anim.play("move")
 		else: 
@@ -105,10 +108,6 @@ func increase_score(amount : int):
 	on_update_score.emit(PlayerStats.score)
 	play_sound(coin_sfx)
 	coinanim.play("collect")
-	var tween = create_tween()
-	tween.tween_property(cointext, "font_size", 36, 0.2)
-	tween.chain().tween_property(cointext, "font_size", 32, 0.2)
-
 func damage_flash():
 	anim.play("dmg")
 	await anim.animation_finished
