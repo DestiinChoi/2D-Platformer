@@ -55,20 +55,29 @@ func _process(_delta):
 
 	manage_animation()
 
-	if global_position.y > 175:
+	
 		
-		if get_tree().get_current_scene().get_name() == "level_1":
-			
+	if get_tree().get_current_scene().get_name() == "level_1":
+		
+		if global_position.y > 250:
 			get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
 			take_damage(1)
-			
-			
-		elif get_tree().get_current_scene().get_name() == "level_2":
+		
+		
+	elif get_tree().get_current_scene().get_name() == "level_2":
+		
+		if global_position.y > 175:
 			get_tree().change_scene_to_file("res://Scenes/level_2.tscn")
 			take_damage(1)
 		
-		else:
-			pass
+	elif get_tree().get_current_scene().get_name() == "level_3":
+		
+		if global_position.y > 150:
+			get_tree().change_scene_to_file("res://Scenes/level_3.tscn")
+			take_damage(1)
+		
+	else:
+		pass
 		
 	
 	
@@ -106,6 +115,7 @@ func game_over():
 func increase_score(amount : int):
 	PlayerStats.score += amount
 	on_update_score.emit(PlayerStats.score)
+	
 	play_sound(coin_sfx)
 	coinanim.play("collect")
 func damage_flash():
