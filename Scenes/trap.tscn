@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://qfsxnmmkon81"]
 
-[ext_resource type="Script" uid="uid://cx8d1624qxphd" path="res://Scripts/spike.gd" id="1_xmcxk"]
+[ext_resource type="Script" uid="uid://cre2osgx0q7if" path="res://Scripts/spikytrap.gd" id="1_q1s4t"]
 [ext_resource type="Texture2D" uid="uid://bgon8jcym5bd1" path="res://Sprites/asset pack/trap/trap_spike_1.png" id="2_xmcxk"]
 [ext_resource type="Texture2D" uid="uid://d0o54ikxevrob" path="res://Sprites/asset pack/trap/trap_spike_2.png" id="3_q1s4t"]
 [ext_resource type="Texture2D" uid="uid://cwtpbqs1r27co" path="res://Sprites/asset pack/trap/trap_spike_3.png" id="4_1520v"]
@@ -48,7 +48,7 @@ _data = {
 }
 
 [node name="Trap" type="Area2D"]
-script = ExtResource("1_xmcxk")
+script = ExtResource("1_q1s4t")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_xmcxk")

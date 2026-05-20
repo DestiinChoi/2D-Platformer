@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cafpxurin071x"]
+
+[ext_resource type="Texture2D" uid="uid://b1nmfghlcoxyi" path="res://Sprites/buttons/Sprite sheet for Basic Pack.png" id="1_d21sm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qjf8l"]
+texture = ExtResource("1_d21sm")
+region_rect = Rect2(59, 107, 26, 26)
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_qjf8l")

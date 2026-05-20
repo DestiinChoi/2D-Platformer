@@ -23,6 +23,7 @@ PlayerStats="*res://Scripts/player_stats.gd"
 
 window/size/mode=2
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://d33ay2s6fwtdf"
 
 [input]
 

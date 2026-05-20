@@ -207,7 +207,6 @@ libraries = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("4_fkybt")
 
 [node name="HealthContainer" type="HBoxContainer" parent="CanvasLayer"]

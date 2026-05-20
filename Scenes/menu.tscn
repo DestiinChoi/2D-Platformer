@@ -1,16 +1,58 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw7lp67vp5x13"]
+[gd_scene load_steps=19 format=4 uid="uid://cw7lp67vp5x13"]
 
 [ext_resource type="Script" uid="uid://c0b5rey1xt1gw" path="res://Scripts/menu.gd" id="1_xhh6f"]
 [ext_resource type="Texture2D" uid="uid://backa3wc7ct5q" path="res://Sprites/Backgrounds/sunsetbackground.png" id="2_jsrd8"]
-[ext_resource type="FontFile" uid="uid://cqnf72prfo7pk" path="res://font/Round9x13.ttf" id="3_cayip"]
 [ext_resource type="Texture2D" uid="uid://cfyqwiml8ovvg" path="res://Sprites/Backgrounds/hills4.png" id="3_wbdvm"]
 [ext_resource type="Texture2D" uid="uid://gkxsspnc4hr0" path="res://Sprites/Backgrounds/clouds5.png" id="3_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://bjjvbnle7qoof" path="res://Sprites/Backgrounds/clouds6.png" id="4_jsrd8"]
+[ext_resource type="TileSet" uid="uid://bphy4st8ym4ie" path="res://Sprites/Tiles/new_tile_set.tres" id="6_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://ct7u7806w2bqj" path="res://Sprites/Characters/luffy/luffyidle/luffyidle1.png" id="8_7qvly"]
+[ext_resource type="Theme" uid="uid://dcmtdj20puv43" path="res://Sprites/buttons/SproutsPlayButton.tres" id="8_rfqti"]
+[ext_resource type="Theme" uid="uid://ctfoe04xdf6br" path="res://Sprites/buttons/SproutsCustomButton.tres" id="9_g8i7c"]
+[ext_resource type="Script" uid="uid://hfwfdvcxua1l" path="res://Scripts/menuluffy.gd" id="9_rfqti"]
+[ext_resource type="Theme" uid="uid://ie6rsq1s7jde" path="res://Sprites/buttons/CharactersButton.tres" id="10_5ti5v"]
+[ext_resource type="Theme" uid="uid://d2qp1kflfdpli" path="res://Sprites/buttons/SmallButton.tres" id="10_8ph6h"]
+[ext_resource type="Texture2D" uid="uid://bwceglk40jo5k" path="res://Sprites/Characters/luffy/luffyidle/luffyidle2.png" id="10_g8i7c"]
+[ext_resource type="Texture2D" uid="uid://bfsp6q2h66ba6" path="res://Sprites/GameTitle.png" id="13_23t3j"]
+[ext_resource type="Script" uid="uid://cbxhuxer2huhd" path="res://Scenes/TitleScreen.gd" id="14_8ph6h"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1rerr"]
-font = ExtResource("3_cayip")
-font_size = 90
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_23t3j"]
+resource_name = "blink"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.8000002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_7qvly"), ExtResource("10_g8i7c")]
+}
+
+[sub_resource type="Animation" id="Animation_8ph6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_7qvly")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ti5v"]
+_data = {
+&"RESET": SubResource("Animation_8ph6h"),
+&"blink": SubResource("Animation_23t3j")
+}
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -20,6 +62,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xhh6f")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="Sky" type="TextureRect" parent="."]
 layout_mode = 1
@@ -54,8 +99,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -342.0
-offset_bottom = 162.0
+offset_top = -387.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 576)
@@ -68,8 +113,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -493.0
-offset_bottom = 11.0
+offset_top = -550.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 576)
@@ -77,55 +122,98 @@ texture = ExtResource("4_jsrd8")
 expand_mode = 4
 stretch_mode = 6
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -532.0
-offset_top = -308.0
-offset_right = 531.0
-offset_bottom = -173.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "2D Platformer Game"
-label_settings = SubResource("LabelSettings_1rerr")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TileMapLayer4" type="TileMapLayer" parent="."]
+modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAADAAMAAAADAAYAAAADAAQAAAAEAAEAAAADAAUAAAADAAYAAAADAAYAAAADAAYAAAADAAcAAAADAAYAAAACAAIAAAACAAEAAAACAAEAAAADAAYAAAACAAAAAAADAAEAAAACAAMAAAACAAYAAAACAAQAAAACAAYAAAACAAUAAAACAAYAAAACAAYAAAACAAYAAAABAAAAAAAEAAEAAAABAAEAAAACAAYAAAABAAIAAAACAAEAAAABAAMAAAACAAYAAAABAAQAAAACAAYAAAABAAUAAAACAAYAAAABAAYAAAACAAYAAAAAAP//AAACAAYAAAAAAAAAAAACAAYAAAAAAAEAAAACAAYAAAAAAAIAAAACAAEAAAAAAAMAAAACAAYAAAAAAAQAAAACAAYAAAAAAAUAAAACAAYAAAAAAAYAAAACAAYAAAAAAAcAAAACAAYAAAABAAcAAAACAAYAAAADAAIAAAADAAEAAAABAP//AAADAAYAAAAEAAQAAAADAAEAAAA=")
+tile_set = ExtResource("6_wbdvm")
 
-[node name="PlayButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = 129.0
-offset_right = 102.0
-offset_bottom = 193.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_cayip")
-text = "PLAY"
+[node name="TileMapLayer3" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAMAAEAAAATAAIAAAALAAEAAAASAAEAAAAMAAAAAAATAAAAAAALAAAAAAATAAEAAAALAAIAAAATAAIAAAAKAAIAAAARAAIAAAAKAAEAAAASAAEAAAAKAAAAAAASAAEAAAAKAP//AAASAAAAAAAJAAAAAAASAAEAAAAJAP//AAARAAAAAAAJAAEAAAASAAIAAAAIAAEAAAARAAIAAAAIAAAAAAARAAAAAAALAP//AAATAAAAAAADAAUAAAABAAEAAAADAAYAAAAFAAEAAAADAAcAAAACAAYAAAAEAAUAAAACAAEAAAAEAAYAAAACAAYAAAAEAAcAAAACAAYAAAAFAAUAAAACAAEAAAAFAAYAAAACAAYAAAAFAAcAAAACAAYAAAAGAAUAAAACAAEAAAAGAAYAAAACAAYAAAAGAAcAAAACAAYAAAAHAAUAAAACAAEAAAAHAAYAAAACAAYAAAAHAAcAAAACAAYAAAAIAAUAAAACAAEAAAAIAAYAAAACAAYAAAAIAAcAAAACAAYAAAAJAAUAAAACAAEAAAAJAAYAAAACAAYAAAAJAAcAAAACAAYAAAAKAAUAAAACAAEAAAAKAAYAAAACAAYAAAAKAAcAAAACAAYAAAALAAUAAAAPAAEAAAALAAYAAAAPAAIAAAALAAcAAAAPAAIAAAAMAAUAAAACAAEAAAAMAAYAAAACAAYAAAAMAAcAAAACAAYAAAAEAAQAAAAEAAYAABACAAYAAAABAAEAAAACAAcAAAABAAYAAAABAAYAAAAGAAcAAAAAAAYAAAAGAAcAAAA=")
+tile_set = ExtResource("6_wbdvm")
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = 205.0
-offset_right = 102.0
-offset_bottom = 269.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_cayip")
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAMAAEAAAATAAIAAAALAAEAAAASAAEAAAAMAAAAAAATAAAAAAALAAAAAAASAAAAAAALAAIAAAATAAIAAAAKAAIAAAARAAIAAAAKAAEAAAARAAEAAAAKAAAAAAARAAAAAAAHAAYAAAACAAEAAAAIAAYAAAACAAEAAAAJAAYAAAADAAEAAAAFAAYAAAABAAEAAAAGAAYAAAACAAEAAAAJAAcAAAADAAYAAAAFAAcAAAABAAYAAAAGAAcAAAACAAYAAAAHAAcAAAACAAYAAAAIAAcAAAACAAYAAAAGAAUAAAAIAAYAAAA=")
+tile_set = ExtResource("6_wbdvm")
+
+[node name="Waterfall" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAALAAUAAAAOAAEAAAALAAYAAAAOAAIAAAALAAcAAAAOAAIAAAA=")
+tile_set = ExtResource("6_wbdvm")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAKAAQAAAARAAYAAAAKAAMAAAARAAUAAAAJAAIAAAARAAIAAAALAAIAAAATAAMAAAAJAAEAAAARAAAAAAAJAAMAAAASAAQAAAALAAMAAAATAAYAAAAKAAIAAAARAAQAAAAKAAEAAAATAAAAAAAKAAcAAAADAAEAAAAJAAcAAAABAAEAAAAKAAYAAAAGAAYAAAA=")
+tile_set = ExtResource("6_wbdvm")
+
+[node name="MainButtons" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_top = 227.0
+offset_right = 322.0
+offset_bottom = 532.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButtons"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="PlayButton" type="Button" parent="MainButtons/VBoxContainer"]
+custom_minimum_size = Vector2(288, 90)
+layout_mode = 2
+theme = ExtResource("8_rfqti")
+
+[node name="QuitButton" type="Button" parent="MainButtons/VBoxContainer"]
+custom_minimum_size = Vector2(288, 90)
+layout_mode = 2
+theme = ExtResource("9_g8i7c")
+theme_override_font_sizes/font_size = 62
 text = "QUIT"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainButtons/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="SettingsButton" type="Button" parent="MainButtons/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme = ExtResource("10_8ph6h")
+action_mode = 0
+
+[node name="CharactersButton" type="Button" parent="MainButtons/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme = ExtResource("10_5ti5v")
+action_mode = 0
+
+[node name="Luffy" type="Sprite2D" parent="."]
+position = Vector2(758, 370)
+texture = ExtResource("8_7qvly")
+script = ExtResource("9_rfqti")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Luffy"]
+libraries = {
+&"": SubResource("AnimationLibrary_5ti5v")
+}
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -41.0
+offset_right = 677.00006
+offset_bottom = 256.0
+texture = ExtResource("13_23t3j")
+script = ExtResource("14_8ph6h")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="MainButtons/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainButtons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
