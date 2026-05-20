@@ -70,6 +70,14 @@ position = Vector2(531, 33)
 position = Vector2(442, -81)
 move_direction = Vector2(0, 110)
 
+[node name="Node" type="Node" parent="Enemies/Enemy5"]
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("5_t7v2y")]
+position = Vector2(599, -15)
+move_direction = Vector2(50, 0)
+
+[node name="Node" type="Node" parent="Enemies/Enemy6"]
+
 [node name="Coins" type="Node" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("6_ait6c")]
