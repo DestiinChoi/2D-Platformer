@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://sry7flq5p6t0" path="res://Scripts/background_parallax.gd" id="3_wnq0t"]
 [ext_resource type="PackedScene" uid="uid://dv0g1jn3n7ini" path="res://Scenes/player.tscn" id="4_kmy7e"]
 [ext_resource type="Texture2D" uid="uid://cgwcqnqp2u7fr" path="res://Sprites/Backgrounds/Seaside/background_clouds_small.png" id="4_ra6nl"]
-[ext_resource type="PackedScene" uid="uid://u2b4k6a5qm08" path="res://Scenes/enemy.tscn" id="5_833wy"]
 [ext_resource type="Script" uid="uid://cs2dgqx4kkvqk" path="res://Scripts/third_foreground_parallax.gd" id="5_gxey3"]
 [ext_resource type="Texture2D" uid="uid://0k6eime7qudx" path="res://Sprites/Backgrounds/Seaside/background_clouds_medium.png" id="6_4hpui"]
 [ext_resource type="PackedScene" uid="uid://bj2wjre1h6or3" path="res://Scenes/coin.tscn" id="6_ghrvs"]
@@ -19,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c1pdsaur7cf0f" path="res://Sprites/Backgrounds/Seaside/background_ocean.png" id="11_v4n82"]
 [ext_resource type="TileSet" uid="uid://dkdoxdy0x2qik" path="res://Sprites/Tiles/SeasideTileset2.tres" id="13_nbwsh"]
 [ext_resource type="PackedScene" uid="uid://qfsxnmmkon81" path="res://Scenes/trap.tscn" id="19_kgmqw"]
+[ext_resource type="PackedScene" uid="uid://cxlv8jias5evb" path="res://Scenes/spike ball.tscn" id="20_s80er"]
 
 [node name="level_3" type="Node2D"]
 
@@ -369,11 +369,6 @@ tile_set = ExtResource("13_nbwsh")
 
 [node name="Player" parent="." instance=ExtResource("4_kmy7e")]
 
-[node name="Enemies" type="Node" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("5_833wy")]
-position = Vector2(139, -121)
-
 [node name="Coins" type="Node" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("6_ghrvs")]
@@ -463,3 +458,14 @@ rotation = -1.5707964
 [node name="EndFlag" parent="." instance=ExtResource("7_jvy75")]
 position = Vector2(7, -233)
 scene_to_load = ExtResource("8_g0tlw")
+
+[node name="Falling objects" type="Node" parent="."]
+
+[node name="Spikeball" parent="Falling objects" instance=ExtResource("20_s80er")]
+position = Vector2(197, -33)
+
+[node name="Spikeball2" parent="Falling objects" instance=ExtResource("20_s80er")]
+position = Vector2(282, -34)
+
+[node name="Spikeball3" parent="Falling objects" instance=ExtResource("20_s80er")]
+position = Vector2(599, -69)
