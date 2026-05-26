@@ -1,53 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxlv8jias5evb"]
+[gd_scene load_steps=8 format=3 uid="uid://cxlv8jias5evb"]
 
 [ext_resource type="Script" uid="uid://s4ia7jr8t5mi" path="res://spike_ball.gd" id="1_dfttp"]
-[ext_resource type="Texture2D" uid="uid://cw8ve08co5tms" path="res://Sprites/Characters/other/character_0024.png" id="2_7mxjr"]
-[ext_resource type="Texture2D" uid="uid://7j5f58v817vc" path="res://Sprites/Characters/other/character_0025.png" id="3_7i5or"]
 [ext_resource type="Texture2D" uid="uid://bv155eisegi2g" path="res://Sprites/Characters/other/character_0008.png" id="3_7mxjr"]
-[ext_resource type="Texture2D" uid="uid://ccpqftl2qj5by" path="res://Sprites/Characters/other/character_0026.png" id="4_e7hkj"]
 
 [sub_resource type="Animation" id="Animation_chwpn"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0009999999),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_7mxjr"), ExtResource("3_7mxjr")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_wrinw"]
-resource_name = "fly"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_7mxjr"), ExtResource("3_7i5or"), ExtResource("4_e7hkj")]
 }
 
 [sub_resource type="Animation" id="Animation_7i5or"]
@@ -55,32 +23,19 @@ resource_name = "shake"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.4, 0.46666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("3_7mxjr"), ExtResource("3_7mxjr"), ExtResource("3_7mxjr"), ExtResource("3_7mxjr"), ExtResource("3_7mxjr"), ExtResource("3_7mxjr")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.4, 0.46666667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.3, 0.33333334, 0.36666667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-4, 0), Vector2(5, 0), Vector2(3, 0), Vector2(-5, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-8, 0), Vector2(4, 0), Vector2(-4, 0), Vector2(-1, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_af3po"]
 _data = {
 &"RESET": SubResource("Animation_chwpn"),
-&"fly": SubResource("Animation_wrinw"),
 &"shake": SubResource("Animation_7i5or")
 }
 
@@ -89,12 +44,11 @@ size = Vector2(38, 135)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lsmp6"]
 
-[node name="Enemy" type="Area2D"]
+[node name="Spikeball" type="Node2D"]
 script = ExtResource("1_dfttp")
-speed = null
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_7mxjr")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_7mxjr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -109,9 +63,8 @@ shape = SubResource("RectangleShape2D_7i5or")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_lsmp6")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
