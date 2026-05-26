@@ -27,10 +27,10 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.3, 0.33333334, 0.36666667, 0.4),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.18, 0.18010001, 0.2, 0.2095),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-8, 0), Vector2(4, 0), Vector2(-4, 0), Vector2(-1, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-8, 0), Vector2(4, 0), Vector2(-2, 0), Vector2(-2, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_af3po"]
@@ -40,14 +40,16 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7i5or"]
-size = Vector2(38, 135)
+size = Vector2(50, 312)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lsmp6"]
+radius = 18.027756
 
 [node name="Spikeball" type="Node2D"]
 script = ExtResource("1_dfttp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.625)
 texture = ExtResource("3_7mxjr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -58,12 +60,13 @@ libraries = {
 [node name="PlayerDetect" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
-position = Vector2(-1, 57.5)
+position = Vector2(-1, 145)
 shape = SubResource("RectangleShape2D_7i5or")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_lsmp6")
 
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

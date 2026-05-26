@@ -462,10 +462,17 @@ scene_to_load = ExtResource("8_g0tlw")
 [node name="Falling objects" type="Node" parent="."]
 
 [node name="Spikeball" parent="Falling objects" instance=ExtResource("20_s80er")]
-position = Vector2(197, -33)
+position = Vector2(146, -119)
+speed = 350.0
 
 [node name="Spikeball2" parent="Falling objects" instance=ExtResource("20_s80er")]
-position = Vector2(282, -34)
+position = Vector2(282, -129)
+speed = 450.0
 
 [node name="Spikeball3" parent="Falling objects" instance=ExtResource("20_s80er")]
-position = Vector2(599, -69)
+position = Vector2(602, -98)
+speed = 450.0
+
+[node name="Spikeball4" parent="Falling objects" instance=ExtResource("20_s80er")]
+position = Vector2(579, -397)
+speed = 700.0

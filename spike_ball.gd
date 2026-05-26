@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed = 160.0
+@export var speed = 280.0
 var current_speed = 0.0
 
 
@@ -24,5 +24,5 @@ func _on_player_detect_body_entered(body: Node2D) -> void:
 
 func _fall():
 	current_speed = speed
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(3).timeout
 	queue_free()
