@@ -55,6 +55,8 @@ func _process(_delta):
 
 	manage_animation()
 
+	if Input.is_action_pressed("return_to_menu"):
+		call_deferred("game_over")
 	
 		
 	if get_tree().get_current_scene().get_name() == "level_1":
@@ -125,7 +127,8 @@ func damage_flash():
 func play_sound(sound : AudioStream):
 	audio.stream = sound
 	audio.play()
-
+	
+	
 
 
 

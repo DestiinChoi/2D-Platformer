@@ -1,11 +1,12 @@
-[gd_scene load_steps=19 format=4 uid="uid://cw7lp67vp5x13"]
+[gd_scene load_steps=36 format=4 uid="uid://cw7lp67vp5x13"]
 
 [ext_resource type="Script" uid="uid://c0b5rey1xt1gw" path="res://Scripts/menu.gd" id="1_xhh6f"]
 [ext_resource type="Texture2D" uid="uid://backa3wc7ct5q" path="res://Sprites/Backgrounds/sunsetbackground.png" id="2_jsrd8"]
-[ext_resource type="Texture2D" uid="uid://cfyqwiml8ovvg" path="res://Sprites/Backgrounds/hills4.png" id="3_wbdvm"]
 [ext_resource type="Texture2D" uid="uid://gkxsspnc4hr0" path="res://Sprites/Backgrounds/clouds5.png" id="3_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://bjjvbnle7qoof" path="res://Sprites/Backgrounds/clouds6.png" id="4_jsrd8"]
+[ext_resource type="Script" uid="uid://pkn81u7iu044" path="res://Scripts/main_buttons.gd" id="6_5ti5v"]
 [ext_resource type="TileSet" uid="uid://bphy4st8ym4ie" path="res://Sprites/Tiles/new_tile_set.tres" id="6_wbdvm"]
+[ext_resource type="FontFile" uid="uid://dstffsty86efe" path="res://font/pixelFont-7-8x14-sproutLands.ttf" id="7_23t3j"]
 [ext_resource type="Texture2D" uid="uid://ct7u7806w2bqj" path="res://Sprites/Characters/luffy/luffyidle/luffyidle1.png" id="8_7qvly"]
 [ext_resource type="Theme" uid="uid://dcmtdj20puv43" path="res://Sprites/buttons/SproutsPlayButton.tres" id="8_rfqti"]
 [ext_resource type="Theme" uid="uid://ctfoe04xdf6br" path="res://Sprites/buttons/SproutsCustomButton.tres" id="9_g8i7c"]
@@ -13,8 +14,38 @@
 [ext_resource type="Theme" uid="uid://ie6rsq1s7jde" path="res://Sprites/buttons/CharactersButton.tres" id="10_5ti5v"]
 [ext_resource type="Theme" uid="uid://d2qp1kflfdpli" path="res://Sprites/buttons/SmallButton.tres" id="10_8ph6h"]
 [ext_resource type="Texture2D" uid="uid://bwceglk40jo5k" path="res://Sprites/Characters/luffy/luffyidle/luffyidle2.png" id="10_g8i7c"]
+[ext_resource type="Texture2D" uid="uid://dca5ylvgx8lfi" path="res://Sprites/buttons/NEWSPRITESHEET.png" id="11_1by5w"]
 [ext_resource type="Texture2D" uid="uid://bfsp6q2h66ba6" path="res://Sprites/GameTitle.png" id="13_23t3j"]
-[ext_resource type="Script" uid="uid://cbxhuxer2huhd" path="res://Scenes/TitleScreen.gd" id="14_8ph6h"]
+[ext_resource type="Texture2D" uid="uid://bhd6y6sucoget" path="res://Sprites/buttons/ScrollButton.png" id="13_d77ms"]
+[ext_resource type="Script" uid="uid://bw5w5kpjf51u6" path="res://Scripts/settings_exit_button.gd" id="13_rc6uw"]
+[ext_resource type="Script" uid="uid://cbxhuxer2huhd" path="res://Scripts/TitleScreen.gd" id="14_8ph6h"]
+[ext_resource type="Script" uid="uid://dh0f3h5654ecm" path="res://Scripts/audio_slider.gd" id="15_3p34a"]
+[ext_resource type="AudioStream" uid="uid://vp16mmsap61e" path="res://Audio/UIclicksound.mp3" id="21_3p34a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kmwmt"]
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(1605, 543, 51, 63)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rc6uw"]
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(1701, 543, 51, 63)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dldpb"]
+
+[sub_resource type="Animation" id="Animation_8ph6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_7qvly")]
+}
 
 [sub_resource type="Animation" id="Animation_23t3j"]
 resource_name = "blink"
@@ -33,25 +64,386 @@ tracks/0/keys = {
 "values": [ExtResource("8_7qvly"), ExtResource("10_g8i7c")]
 }
 
-[sub_resource type="Animation" id="Animation_8ph6h"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ti5v"]
+_data = {
+&"RESET": SubResource("Animation_8ph6h"),
+&"blink": SubResource("Animation_23t3j")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d77ms"]
+texture = ExtResource("11_1by5w")
+texture_margin_left = 150.0
+texture_margin_top = 20.0
+texture_margin_bottom = 20.0
+region_rect = Rect2(-9, 582, 150, 36)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3p34a"]
+texture = ExtResource("11_1by5w")
+texture_margin_top = 20.0
+texture_margin_bottom = 20.0
+expand_margin_left = 10.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(-4, 630, 157, 36)
+
+[sub_resource type="Animation" id="Animation_3p34a"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
+tracks/0/path = NodePath("All UI/MainMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_7qvly")]
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("All UI/MainMenu/MainButtons:theme_override_constants/margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("All UI/SettinsPopupMenu(INVIS):visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("All UI/SettinsPopupMenu(INVIS):theme_override_constants/margin_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-400]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sliders (INVIS):position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-350, 315)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sliders (INVIS):visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("All UI/CharactersPopupMenu(INVIS)2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("All UI/CharactersPopupMenu(INVIS)2:theme_override_constants/margin_left")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-400]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ti5v"]
+[sub_resource type="Animation" id="Animation_owyel"]
+resource_name = "settings_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("All UI/MainMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("All UI/MainMenu/MainButtons:theme_override_constants/margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333, 0.43333334),
+"transitions": PackedFloat32Array(1.0000019, 1),
+"update": 0,
+"values": [-300, 15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("All UI/SettinsPopupMenu(INVIS):visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("All UI/SettinsPopupMenu(INVIS):theme_override_constants/margin_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, -400, -400]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sliders (INVIS):position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(50, 315), Vector2(-350, 315), Vector2(-350, 315)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sliders (INVIS):visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_d77ms"]
+resource_name = "settings_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("All UI/MainMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("All UI/MainMenu/MainButtons:theme_override_constants/margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1.0000019),
+"update": 0,
+"values": [15, -300]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("All UI/SettinsPopupMenu(INVIS):visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("All UI/SettinsPopupMenu(INVIS):theme_override_constants/margin_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-400, -400, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sliders (INVIS):position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-350, 315), Vector2(-350, 315), Vector2(50, 315)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sliders (INVIS):visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_h63v2"]
+resource_name = "characters_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("All UI/MainMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("All UI/MainMenu/MainButtons:theme_override_constants/margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [15, -300]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("All UI/CharactersPopupMenu(INVIS)2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("All UI/CharactersPopupMenu(INVIS)2:theme_override_constants/margin_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-400, -400, 0]
+}
+
+[sub_resource type="Animation" id="Animation_l6llh"]
+resource_name = "characters_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("All UI/MainMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("All UI/MainMenu/MainButtons:theme_override_constants/margin_left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333335, 0.43333337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-300, 15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("All UI/CharactersPopupMenu(INVIS)2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("All UI/CharactersPopupMenu(INVIS)2:theme_override_constants/margin_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, -400]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p34a"]
 _data = {
-&"RESET": SubResource("Animation_8ph6h"),
-&"blink": SubResource("Animation_23t3j")
+&"RESET": SubResource("Animation_3p34a"),
+&"characters_close": SubResource("Animation_l6llh"),
+&"characters_open": SubResource("Animation_h63v2"),
+&"settings_close": SubResource("Animation_owyel"),
+&"settings_open": SubResource("Animation_d77ms")
 }
 
 [node name="Menu" type="Control"]
@@ -63,137 +455,458 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xhh6f")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="WaterfallTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="Sky" type="TextureRect" parent="."]
+[node name="BgContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -61.0
-offset_bottom = 443.0
+offset_left = -576.0
+offset_right = 576.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(576, 576)
+
+[node name="Skybox" type="MarginContainer" parent="BgContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 500
+
+[node name="Sky" type="TextureRect" parent="BgContainer/Skybox"]
+custom_minimum_size = Vector2(1152, 1152)
+layout_mode = 2
 texture = ExtResource("2_jsrd8")
 expand_mode = 4
 stretch_mode = 6
 
-[node name="Background" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -268.0
-offset_bottom = 236.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(576, 576)
-texture = ExtResource("3_wbdvm")
-expand_mode = 4
+[node name="BackClouds" type="MarginContainer" parent="BgContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 300
 
-[node name="Background2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -387.0
-offset_bottom = 117.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(576, 576)
+[node name="Backclouds" type="TextureRect" parent="BgContainer/BackClouds"]
+custom_minimum_size = Vector2(1152, 1152)
+layout_mode = 2
 texture = ExtResource("3_wwsa2")
 expand_mode = 4
 stretch_mode = 6
 
-[node name="Background3" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -550.0
-offset_bottom = -46.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(576, 576)
+[node name="FrontClouds" type="MarginContainer" parent="BgContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 600
+
+[node name="FrontClouds" type="TextureRect" parent="BgContainer/FrontClouds"]
+custom_minimum_size = Vector2(1152, 1152)
+layout_mode = 2
 texture = ExtResource("4_jsrd8")
 expand_mode = 4
 stretch_mode = 6
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="."]
+[node name="Terrain" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="TileMapLayer4" type="TileMapLayer" parent="Terrain"]
 modulate = Color(0.43134022, 0.43134025, 0.43134025, 1)
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAADAAMAAAADAAYAAAADAAQAAAAEAAEAAAADAAUAAAADAAYAAAADAAYAAAADAAYAAAADAAcAAAADAAYAAAACAAIAAAACAAEAAAACAAEAAAADAAYAAAACAAAAAAADAAEAAAACAAMAAAACAAYAAAACAAQAAAACAAYAAAACAAUAAAACAAYAAAACAAYAAAACAAYAAAABAAAAAAAEAAEAAAABAAEAAAACAAYAAAABAAIAAAACAAEAAAABAAMAAAACAAYAAAABAAQAAAACAAYAAAABAAUAAAACAAYAAAABAAYAAAACAAYAAAAAAP//AAACAAYAAAAAAAAAAAACAAYAAAAAAAEAAAACAAYAAAAAAAIAAAACAAEAAAAAAAMAAAACAAYAAAAAAAQAAAACAAYAAAAAAAUAAAACAAYAAAAAAAYAAAACAAYAAAAAAAcAAAACAAYAAAABAAcAAAACAAYAAAADAAIAAAADAAEAAAABAP//AAADAAYAAAAEAAQAAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAADAAMAAAADAAEAAAADAAUAAAADAAYAAAADAAYAAAADAAYAAAADAAcAAAADAAYAAAACAAIAAAADAAEAAAACAAMAAAACAAYAAAACAAQAAAACAAYAAAACAAUAAAACAAYAAAACAAYAAAACAAYAAAABAAIAAAACAAEAAAABAAMAAAACAAYAAAABAAQAAAACAAYAAAABAAUAAAACAAYAAAABAAYAAAACAAYAAAAAAAIAAAACAAEAAAAAAAMAAAACAAYAAAAAAAQAAAACAAYAAAAAAAUAAAACAAYAAAAAAAYAAAACAAYAAAAAAAcAAAACAAYAAAABAAcAAAACAAYAAAACAAcAAAACAAYAAAAAAP//AAADAAYAAAAAAAAAAAAEAAEAAAAAAAEAAAACAAYAAAABAAAAAAADAAEAAAABAAEAAAADAAYAAAADAAQAAAADAAYAAAA=")
 tile_set = ExtResource("6_wbdvm")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="."]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Terrain"]
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAAMAAEAAAATAAIAAAALAAEAAAASAAEAAAAMAAAAAAATAAAAAAALAAAAAAATAAEAAAALAAIAAAATAAIAAAAKAAIAAAARAAIAAAAKAAEAAAASAAEAAAAKAAAAAAASAAEAAAAKAP//AAASAAAAAAAJAAAAAAASAAEAAAAJAP//AAARAAAAAAAJAAEAAAASAAIAAAAIAAEAAAARAAIAAAAIAAAAAAARAAAAAAALAP//AAATAAAAAAADAAUAAAABAAEAAAADAAYAAAAFAAEAAAADAAcAAAACAAYAAAAEAAUAAAACAAEAAAAEAAYAAAACAAYAAAAEAAcAAAACAAYAAAAFAAUAAAACAAEAAAAFAAYAAAACAAYAAAAFAAcAAAACAAYAAAAGAAUAAAACAAEAAAAGAAYAAAACAAYAAAAGAAcAAAACAAYAAAAHAAUAAAACAAEAAAAHAAYAAAACAAYAAAAHAAcAAAACAAYAAAAIAAUAAAACAAEAAAAIAAYAAAACAAYAAAAIAAcAAAACAAYAAAAJAAUAAAACAAEAAAAJAAYAAAACAAYAAAAJAAcAAAACAAYAAAAKAAUAAAACAAEAAAAKAAYAAAACAAYAAAAKAAcAAAACAAYAAAALAAUAAAAPAAEAAAALAAYAAAAPAAIAAAALAAcAAAAPAAIAAAAMAAUAAAACAAEAAAAMAAYAAAACAAYAAAAMAAcAAAACAAYAAAAEAAQAAAAEAAYAABACAAYAAAABAAEAAAACAAcAAAABAAYAAAABAAYAAAAGAAcAAAAAAAYAAAAGAAcAAAA=")
 tile_set = ExtResource("6_wbdvm")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Terrain"]
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAAMAAEAAAATAAIAAAALAAEAAAASAAEAAAAMAAAAAAATAAAAAAALAAAAAAASAAAAAAALAAIAAAATAAIAAAAKAAIAAAARAAIAAAAKAAEAAAARAAEAAAAKAAAAAAARAAAAAAAHAAYAAAACAAEAAAAIAAYAAAACAAEAAAAJAAYAAAADAAEAAAAFAAYAAAABAAEAAAAGAAYAAAACAAEAAAAJAAcAAAADAAYAAAAFAAcAAAABAAYAAAAGAAcAAAACAAYAAAAHAAcAAAACAAYAAAAIAAcAAAACAAYAAAAGAAUAAAAIAAYAAAA=")
 tile_set = ExtResource("6_wbdvm")
 
-[node name="Waterfall" type="TileMapLayer" parent="."]
+[node name="Waterfall" type="TileMapLayer" parent="Terrain"]
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAALAAUAAAAOAAEAAAALAAYAAAAOAAIAAAALAAcAAAAOAAIAAAA=")
 tile_set = ExtResource("6_wbdvm")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="Terrain"]
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAAKAAQAAAARAAYAAAAKAAMAAAARAAUAAAAJAAIAAAARAAIAAAALAAIAAAATAAMAAAAJAAEAAAARAAAAAAAJAAMAAAASAAQAAAALAAMAAAATAAYAAAAKAAIAAAARAAQAAAAKAAEAAAATAAAAAAAKAAcAAAADAAEAAAAJAAcAAAABAAEAAAAKAAYAAAAGAAYAAAA=")
 tile_set = ExtResource("6_wbdvm")
 
-[node name="MainButtons" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_top = 227.0
-offset_right = 322.0
-offset_bottom = 532.0
+[node name="All UI" type="MarginContainer" parent="." node_paths=PackedStringArray("settings_menu", "characters_menu", "main_menu", "sliders")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_5ti5v")
+settings_menu = NodePath("SettinsPopupMenu(INVIS)")
+characters_menu = NodePath("CharactersPopupMenu(INVIS)2")
+main_menu = NodePath("MainMenu")
+sliders = NodePath("../Sliders (INVIS)")
+
+[node name="MainMenu" type="VBoxContainer" parent="All UI"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 120
+
+[node name="Spacer" type="Control" parent="All UI/MainMenu"]
+layout_mode = 2
+
+[node name="MainButtons" type="MarginContainer" parent="All UI/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainButtons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/MainMenu/MainButtons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 
-[node name="PlayButton" type="Button" parent="MainButtons/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="All UI/MainMenu/MainButtons/VBoxContainer"]
 custom_minimum_size = Vector2(288, 90)
 layout_mode = 2
 theme = ExtResource("8_rfqti")
 
-[node name="QuitButton" type="Button" parent="MainButtons/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="All UI/MainMenu/MainButtons/VBoxContainer"]
 custom_minimum_size = Vector2(288, 90)
 layout_mode = 2
 theme = ExtResource("9_g8i7c")
 theme_override_font_sizes/font_size = 62
 text = "QUIT"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainButtons/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="All UI/MainMenu/MainButtons/VBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 8
 
-[node name="SettingsButton" type="Button" parent="MainButtons/VBoxContainer/HBoxContainer"]
+[node name="SettingsButton" type="Button" parent="All UI/MainMenu/MainButtons/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 theme = ExtResource("10_8ph6h")
 action_mode = 0
 
-[node name="CharactersButton" type="Button" parent="MainButtons/VBoxContainer/HBoxContainer"]
+[node name="CharactersButton" type="Button" parent="All UI/MainMenu/MainButtons/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 theme = ExtResource("10_5ti5v")
 action_mode = 0
+
+[node name="SettinsPopupMenu(INVIS)" type="MarginContainer" parent="All UI"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = -400
+
+[node name="MarginContainer" type="MarginContainer" parent="All UI/SettinsPopupMenu(INVIS)"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="Spacer" type="Control" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 300)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(33, 177, 78, 84)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 24
+
+[node name="SettingsTitleVBox" type="VBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Spacer" type="Control" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/SettingsTitleVBox"]
+layout_mode = 2
+
+[node name="SettingsTitleHBox" type="HBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/SettingsTitleVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 22
+
+[node name="Spacer" type="Control" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/SettingsTitleVBox/SettingsTitleHBox"]
+layout_mode = 2
+
+[node name="SettingsDisplay" type="Label" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/SettingsTitleVBox/SettingsTitleHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.76862746, 0.6039216, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("7_23t3j")
+theme_override_font_sizes/font_size = 45
+text = "Settings"
+
+[node name="ButtonsVbox" type="VBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="Spacer" type="Control" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/ButtonsVbox"]
+layout_mode = 2
+
+[node name="ButtonsBox" type="MarginContainer" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/ButtonsVbox"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/ButtonsVbox/ButtonsBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicSetting" type="NinePatchRect" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(489, 534, 270, 81)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 24
+
+[node name="SFXSetting" type="NinePatchRect" parent="All UI/SettinsPopupMenu(INVIS)/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(489, 534, 270, 81)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 24
+
+[node name="ExitMargins" type="MarginContainer" parent="All UI/SettinsPopupMenu(INVIS)"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/ExitMargins"]
+layout_mode = 2
+theme_override_constants/separation = 109
+
+[node name="MarginContainer2" type="MarginContainer" parent="All UI/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 339
+script = ExtResource("13_rc6uw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="All UI/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="All UI/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsExitButton" type="Button" parent="All UI/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(51, 63)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_kmwmt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rc6uw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rc6uw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rc6uw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dldpb")
+
+[node name="Spacer" type="Control" parent="All UI/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer"]
+layout_mode = 2
+
+[node name="CharactersPopupMenu(INVIS)2" type="MarginContainer" parent="All UI"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = -400
+
+[node name="MarginContainer" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="Spacer" type="Control" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 300)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(33, 177, 78, 84)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 24
+
+[node name="TitleVBox" type="VBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="Spacer" type="Control" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/TitleVBox"]
+layout_mode = 2
+
+[node name="SettingsTitleHBox" type="HBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/TitleVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 22
+
+[node name="Spacer" type="Control" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/TitleVBox/SettingsTitleHBox"]
+layout_mode = 2
+
+[node name="SettingsDisplay" type="Label" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/TitleVBox/SettingsTitleHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.76862746, 0.6039216, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("7_23t3j")
+theme_override_font_sizes/font_size = 45
+text = "Characters"
+
+[node name="ButtonsVbox" type="VBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="Spacer" type="Control" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox"]
+layout_mode = 2
+
+[node name="ButtonsBox" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicSetting" type="NinePatchRect" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(489, 534, 270, 81)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 24
+
+[node name="SFXSetting" type="NinePatchRect" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(489, 534, 270, 81)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 24
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 7
+
+[node name="LuffyPortrait" type="NinePatchRect" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(459, 171, 90, 90)
+
+[node name="Label" type="Label" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.76862746, 0.6039216, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("7_23t3j")
+theme_override_font_sizes/font_size = 54
+text = "        LUFFY"
+
+[node name="MarginContainer3" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2/MarginContainer/MarginContainer3"]
+modulate = Color(0.94663924, 0.8604515, 0.93580437, 1)
+custom_minimum_size = Vector2(48, 42)
+layout_mode = 2
+texture = ExtResource("8_7qvly")
+region_rect = Rect2(0, 0, 160, 140)
+
+[node name="MarginContainer2" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 7
+
+[node name="Portrait" type="NinePatchRect" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2/MarginContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(459, 171, 90, 90)
+
+[node name="Label" type="Label" parent="All UI/CharactersPopupMenu(INVIS)2/MarginContainer/ButtonsVbox/ButtonsBox/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.76862746, 0.6039216, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("7_23t3j")
+theme_override_font_sizes/font_size = 54
+text = "        ---"
+
+[node name="ExitMargins" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/ExitMargins"]
+layout_mode = 2
+theme_override_constants/separation = 109
+
+[node name="MarginContainer2" type="MarginContainer" parent="All UI/CharactersPopupMenu(INVIS)2/ExitMargins/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 339
+script = ExtResource("13_rc6uw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="All UI/CharactersPopupMenu(INVIS)2/ExitMargins/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="All UI/CharactersPopupMenu(INVIS)2/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="CharacterExitButton" type="Button" parent="All UI/CharactersPopupMenu(INVIS)2/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(51, 63)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_kmwmt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rc6uw")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rc6uw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_rc6uw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dldpb")
+
+[node name="Spacer" type="Control" parent="All UI/CharactersPopupMenu(INVIS)2/ExitMargins/VBoxContainer"]
+layout_mode = 2
 
 [node name="Luffy" type="Sprite2D" parent="."]
 position = Vector2(758, 370)
@@ -214,6 +927,116 @@ offset_bottom = 256.0
 texture = ExtResource("13_23t3j")
 script = ExtResource("14_8ph6h")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="MainButtons/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MainButtons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Sliders (INVIS)" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -350.0
+offset_top = 315.0
+offset_right = -89.0
+offset_bottom = 488.0
+theme_override_constants/separation = 47
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sliders (INVIS)"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Sliders (INVIS)/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Sliders (INVIS)/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(2448, 720, 48, 48)
+
+[node name="MusicScroller" type="HSlider" parent="Sliders (INVIS)/HBoxContainer"]
+custom_minimum_size = Vector2(147, 63)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("13_d77ms")
+theme_override_icons/grabber_highlight = ExtResource("13_d77ms")
+theme_override_icons/grabber_disabled = ExtResource("13_d77ms")
+theme_override_styles/slider = SubResource("StyleBoxTexture_d77ms")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_3p34a")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_3p34a")
+max_value = 1.0
+step = 0.14
+script = ExtResource("15_3p34a")
+bus_name = "music"
+
+[node name="MarginContainer" type="MarginContainer" parent="Sliders (INVIS)/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_right = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Sliders (INVIS)/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(2400, 720, 48, 48)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Sliders (INVIS)"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="Sliders (INVIS)/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Sliders (INVIS)/HBoxContainer2/MarginContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(2544, 720, 48, 48)
+
+[node name="SFXScroller" type="HSlider" parent="Sliders (INVIS)/HBoxContainer2"]
+custom_minimum_size = Vector2(147, 63)
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("13_d77ms")
+theme_override_icons/grabber_highlight = ExtResource("13_d77ms")
+theme_override_icons/grabber_disabled = ExtResource("13_d77ms")
+theme_override_styles/slider = SubResource("StyleBoxTexture_d77ms")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_3p34a")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_3p34a")
+max_value = 1.0
+step = 0.14
+script = ExtResource("15_3p34a")
+bus_name = "sfx"
+
+[node name="MarginContainer" type="MarginContainer" parent="Sliders (INVIS)/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_right = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Sliders (INVIS)/HBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("11_1by5w")
+region_rect = Rect2(2496, 720, 48, 48)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3p34a")
+}
+
+[node name="UIsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_3p34a")
+bus = &"sfx"
+
+[connection signal="timeout" from="WaterfallTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="All UI/MainMenu/MainButtons/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="All UI/MainMenu/MainButtons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="All UI/MainMenu/MainButtons/VBoxContainer/HBoxContainer/SettingsButton" to="All UI" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="All UI/MainMenu/MainButtons/VBoxContainer/HBoxContainer/SettingsButton" to="All UI/MainMenu/MainButtons" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="All UI/MainMenu/MainButtons/VBoxContainer/HBoxContainer/CharactersButton" to="All UI" method="_on_characters_button_pressed"]
+[connection signal="pressed" from="All UI/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer/SettingsExitButton" to="All UI" method="_on_settings_exit_button_pressed"]
+[connection signal="pressed" from="All UI/CharactersPopupMenu(INVIS)2/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer/CharacterExitButton" to="All UI" method="_on_character_exit_button_pressed"]

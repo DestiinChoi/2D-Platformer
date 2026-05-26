@@ -1,7 +1,8 @@
 extends Control
 
-@onready var timer : Timer = $Timer
-@onready var water : TileMapLayer = $Waterfall
+@onready var timer : Timer = $WaterfallTimer
+@onready var water : TileMapLayer = $Terrain/Waterfall
+@onready var ui_sound : AudioStreamPlayer = $UIsound
 
 func _ready() -> void:
 	timer.start()
@@ -14,12 +15,16 @@ func _on_timer_timeout() -> void:
 	
 
 func _on_play_button_pressed() -> void:
+	ui_sound.play()
+	await ui_sound.finished
 	PlayerStats.score = 0
 	PlayerStats.health = 5
 	get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
 
 
 func _on_quit_button_pressed() -> void:
+	ui_sound.play()
+	await ui_sound.finished
 	get_tree().quit()
 
 
