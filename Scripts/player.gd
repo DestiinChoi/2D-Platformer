@@ -130,9 +130,15 @@ func play_sound(sound : AudioStream):
 	
 	
 
-
-
-
+func _on_settings_button_pressed() -> void:
+	$"CanvasLayer/SettinsPopupMenu(INVIS)".visible = true
+	$CanvasLayer/SettingsButton.visible = false
+	$"CanvasLayer/Sliders (INVIS)".visible = true
+	
+func _on_settings_exit_button_pressed() -> void:
+	$"CanvasLayer/SettinsPopupMenu(INVIS)".visible = false
+	$CanvasLayer/SettingsButton.visible = true
+	$"CanvasLayer/Sliders (INVIS)".visible = false
 
 
 
