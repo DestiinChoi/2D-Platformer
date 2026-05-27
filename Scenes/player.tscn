@@ -27,9 +27,9 @@
 [ext_resource type="Theme" uid="uid://d2qp1kflfdpli" path="res://Sprites/buttons/SmallButton.tres" id="25_p1odr"]
 [ext_resource type="Texture2D" uid="uid://dca5ylvgx8lfi" path="res://Sprites/buttons/NEWSPRITESHEET.png" id="26_y6uwr"]
 [ext_resource type="FontFile" uid="uid://dstffsty86efe" path="res://font/pixelFont-7-8x14-sproutLands.ttf" id="27_83xs0"]
-[ext_resource type="Script" uid="uid://bw5w5kpjf51u6" path="res://Scripts/settings_exit_button.gd" id="28_ypfnu"]
 [ext_resource type="Texture2D" uid="uid://bhd6y6sucoget" path="res://Sprites/buttons/ScrollButton.png" id="29_ypfnu"]
 [ext_resource type="Script" uid="uid://dh0f3h5654ecm" path="res://Scripts/audio_slider.gd" id="30_xuaoq"]
+[ext_resource type="AudioStream" uid="uid://vp16mmsap61e" path="res://Audio/UIclicksound.mp3" id="30_ypfnu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 height = 24.0
@@ -188,11 +188,19 @@ _data = {
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xuaoq"]
 texture = ExtResource("26_y6uwr")
-region_rect = Rect2(1605, 543, 51, 63)
+texture_margin_left = 27.0
+texture_margin_top = 27.0
+texture_margin_right = 27.0
+texture_margin_bottom = 33.0
+region_rect = Rect2(2517, 15, 54, 60)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wohnl"]
 texture = ExtResource("26_y6uwr")
-region_rect = Rect2(1701, 543, 51, 63)
+texture_margin_left = 27.0
+texture_margin_top = 33.0
+texture_margin_right = 27.0
+texture_margin_bottom = 27.0
+region_rect = Rect2(2613, 15, 54, 60)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36dho"]
 
@@ -243,10 +251,10 @@ bus = &"sfx"
 script = ExtResource("4_fkybt")
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer"]
-offset_left = 1092.0
-offset_top = 12.0
-offset_right = 1096.0
-offset_bottom = 16.0
+offset_left = 1046.0
+offset_top = 541.0
+offset_right = 1054.0
+offset_bottom = 549.0
 scale = Vector2(11.523021, 11.523021)
 theme = ExtResource("25_p1odr")
 
@@ -305,11 +313,14 @@ libraries = {
 }
 
 [node name="SettinsPopupMenu(INVIS)" type="MarginContainer" parent="CanvasLayer"]
+process_mode = 3
 visible = false
-offset_left = 746.0
-offset_top = -59.0
-offset_right = 1140.0
-offset_bottom = 361.0
+offset_left = 434.0
+offset_top = 58.0
+offset_right = 828.0
+offset_bottom = 478.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettinsPopupMenu(INVIS)"]
@@ -402,20 +413,17 @@ size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins"]
 layout_mode = 2
-theme_override_constants/separation = 109
+theme_override_constants/separation = 146
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 339
-script = ExtResource("28_ypfnu")
+theme_override_constants/margin_left = 295
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-
-[node name="Control" type="Control" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
-layout_mode = 2
+theme_override_constants/separation = 6
 
 [node name="SettingsExitButton" type="Button" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(51, 63)
@@ -426,15 +434,21 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_wohnl")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wohnl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_36dho")
 
+[node name="Control" type="Control" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
 [node name="Spacer" type="Control" parent="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer"]
 layout_mode = 2
 
 [node name="Sliders (INVIS)" type="VBoxContainer" parent="CanvasLayer"]
+process_mode = 3
 visible = false
-offset_left = 796.0
-offset_top = 142.0
-offset_right = 1057.0
-offset_bottom = 315.0
+offset_left = 484.0
+offset_top = 259.0
+offset_right = 745.0
+offset_bottom = 432.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 47
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Sliders (INVIS)"]
@@ -523,6 +537,10 @@ custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("26_y6uwr")
 region_rect = Rect2(2496, 720, 48, 48)
+
+[node name="UIsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_ypfnu")
+bus = &"sfx"
 
 [connection signal="pressed" from="CanvasLayer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettinsPopupMenu(INVIS)/ExitMargins/VBoxContainer/MarginContainer2/HBoxContainer/SettingsExitButton" to="." method="_on_settings_exit_button_pressed"]
