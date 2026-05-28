@@ -1,0 +1,179 @@
+[gd_scene load_steps=17 format=4 uid="uid://crkftxpg8mcpn"]
+
+[ext_resource type="Script" uid="uid://dhdkrgum52pio" path="res://Scripts/win_screen.gd" id="1_85imr"]
+[ext_resource type="Texture2D" uid="uid://bvxcuokww408j" path="res://Sprites/YouWin.png" id="1_a00f1"]
+[ext_resource type="Script" uid="uid://cbxhuxer2huhd" path="res://Scripts/TitleScreen.gd" id="2_awi1s"]
+[ext_resource type="PackedScene" uid="uid://cw7lp67vp5x13" path="res://Scenes/menu.tscn" id="2_mf36t"]
+[ext_resource type="Texture2D" uid="uid://backa3wc7ct5q" path="res://Sprites/Backgrounds/sunsetbackground.png" id="3_1rjdi"]
+[ext_resource type="Texture2D" uid="uid://gkxsspnc4hr0" path="res://Sprites/Backgrounds/clouds5.png" id="4_6ufe8"]
+[ext_resource type="Texture2D" uid="uid://bjjvbnle7qoof" path="res://Sprites/Backgrounds/clouds6.png" id="5_5xl6h"]
+[ext_resource type="Theme" uid="uid://ctfoe04xdf6br" path="res://Sprites/buttons/SproutsCustomButton.tres" id="5_pq638"]
+[ext_resource type="TileSet" uid="uid://bphy4st8ym4ie" path="res://Sprites/Tiles/new_tile_set.tres" id="6_qrg8t"]
+[ext_resource type="Texture2D" uid="uid://7j5f58v817vc" path="res://Sprites/Characters/other/character_0025.png" id="10_6ufe8"]
+[ext_resource type="Texture2D" uid="uid://cw8ve08co5tms" path="res://Sprites/Characters/other/character_0024.png" id="11_qrg8t"]
+[ext_resource type="Texture2D" uid="uid://ccpqftl2qj5by" path="res://Sprites/Characters/other/character_0026.png" id="12_pe4lh"]
+[ext_resource type="AudioStream" uid="uid://vp16mmsap61e" path="res://Audio/UIclicksound.mp3" id="13_pe4lh"]
+
+[sub_resource type="Animation" id="Animation_6ufe8"]
+resource_name = "bird"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("10_6ufe8"), ExtResource("11_qrg8t"), ExtResource("12_pe4lh")]
+}
+
+[sub_resource type="Animation" id="Animation_5xl6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_6ufe8")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrg8t"]
+_data = {
+&"RESET": SubResource("Animation_5xl6h"),
+&"bird": SubResource("Animation_6ufe8")
+}
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_85imr")
+scene = ExtResource("2_mf36t")
+
+[node name="BgContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -552.0
+offset_right = 576.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Skybox" type="MarginContainer" parent="BgContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 500
+
+[node name="Sky" type="TextureRect" parent="BgContainer/Skybox"]
+custom_minimum_size = Vector2(1152, 1152)
+layout_mode = 2
+texture = ExtResource("3_1rjdi")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="BackClouds" type="MarginContainer" parent="BgContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 300
+
+[node name="Backclouds" type="TextureRect" parent="BgContainer/BackClouds"]
+custom_minimum_size = Vector2(1152, 1152)
+layout_mode = 2
+texture = ExtResource("4_6ufe8")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="FrontClouds" type="MarginContainer" parent="BgContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 600
+
+[node name="FrontClouds" type="TextureRect" parent="BgContainer/FrontClouds"]
+custom_minimum_size = Vector2(1152, 1152)
+layout_mode = 2
+texture = ExtResource("5_5xl6h")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="."]
+modulate = Color(0.43137255, 0.43137255, 0.43137255, 1)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAKAAMAAAABAAEAAAAJAAUAAAABAAEAAAAJAAYAAAABAAYAAAAJAAcAAAABAAYAAAAKAAQAAAABAAYAAAAKAAUAAAAFAAEAAAAKAAYAAAACAAYAAAAKAAcAAAACAAYAAAALAAcAAAACAAYAAAALAAYAAAACAAYAAAALAAUAAAACAAYAAAALAAQAAAACAAYAAAAMAAMAAAACAAYAAAAMAAQAAAACAAYAAAAMAAUAAAACAAYAAAAMAAYAAAACAAYAAAAMAAcAAAACAAYAAAALAAIAAAABAAEAAAALAAMAAAAFAAEAAAAMAAIAAAACAAEAAAALAAEAAAAFAAYAAAA=")
+tile_set = ExtResource("6_qrg8t")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAALAAQAAAABAAEAAAAMAAQAAAACAAEAAAALAAUAAAABAAYAAAALAAYAAAABAAYAAAALAAcAAAABAAYAAAAMAAUAAAACAAYAAAAMAAYAAAACAAYAAAAMAAcAAAACAAYAAAACAAMAAAATAAIAAAADAAIAAAATAAIAAAADAAEAAAATAAAAAAACAAIAAAASAAEAAAACAAEAAAASAAEAAAABAAMAAAASAAIAAAABAAIAAAASAAEAAAAAAAMAAAASAAIAAAAAAAIAAAASAAEAAAAAAAEAAAASAAEAAAACAAAAAAATAAEAAAABAAAAAAASAAEAAAABAAEAAAASAAEAAAAAAAAAAAASAAEAAAA=")
+tile_set = ExtResource("6_qrg8t")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAAAAYAAAACAAEAAAABAAYAAAACAAEAAAACAAYAAAACAAEAAAADAAYAAAACAAEAAAAEAAYAAAACAAEAAAAFAAYAAAACAAEAAAAGAAYAAAACAAEAAAAHAAYAAAACAAEAAAAIAAYAAAACAAEAAAAJAAYAAAACAAEAAAAKAAYAAAACAAEAAAALAAYAAAACAAEAAAAMAAYAAAACAAEAAAABAAUAAAARAAYAAAABAAQAAAASAAYAAAABAAMAAAAQAAYAAAABAAIAAAARAAQAAAACAAEAAAATAAMAAAABAAEAAAASAAEAAAAAAAEAAAASAAEAAAAAAAMAAAASAAQAAAAAAAcAAAACAAYAAAABAAcAAAACAAYAAAACAAcAAAACAAYAAAADAAcAAAACAAYAAAAEAAcAAAACAAYAAAAFAAcAAAACAAYAAAAGAAcAAAACAAYAAAAHAAcAAAACAAYAAAAIAAcAAAACAAYAAAAJAAcAAAACAAYAAAAKAAcAAAACAAYAAAALAAcAAAACAAYAAAAMAAcAAAACAAYAAAAKAAUAAAAGAAYAAAAAAAAAAAASAAAAAAABAAAAAAATAAAAAAAAAAIAAAASAAIAAAACAAQAAAATAAYAAAA=")
+tile_set = ExtResource("6_qrg8t")
+
+[node name="WinTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -79.0
+offset_right = 260.33325
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a00f1")
+script = ExtResource("2_awi1s")
+
+[node name="ReturnButton" type="Button" parent="."]
+custom_minimum_size = Vector2(288, 90)
+layout_mode = 0
+offset_left = 415.0
+offset_top = 439.0
+offset_right = 703.0
+offset_bottom = 529.0
+theme = ExtResource("5_pq638")
+theme_override_font_sizes/font_size = 62
+text = "return"
+
+[node name="bird" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 35.0
+offset_right = 917.0
+offset_bottom = 180.0
+texture = ExtResource("10_6ufe8")
+script = ExtResource("2_awi1s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../bird")
+libraries = {
+&"": SubResource("AnimationLibrary_qrg8t")
+}
+
+[node name="UIsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_pe4lh")
+bus = &"sfx"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

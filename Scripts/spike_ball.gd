@@ -1,7 +1,12 @@
 extends Node2D
 
+<<<<<<< HEAD:spike_ball.gd
 @export var speed = 280.0
+=======
+@export var speed = 200.0
+>>>>>>> 61accc2eaa1f1e77c19d2541eb3b0a6d0c7497f4:Scripts/spike_ball.gd
 var current_speed = 0.0
+@onready var start_position = global_position
 
 
 func _ready() -> void:
@@ -24,5 +29,12 @@ func _on_player_detect_body_entered(body: Node2D) -> void:
 
 func _fall():
 	current_speed = speed
+<<<<<<< HEAD:spike_ball.gd
 	await get_tree().create_timer(3).timeout
 	queue_free()
+=======
+	await get_tree().create_timer(5).timeout
+	current_speed = 0.0
+	global_position = start_position
+	
+>>>>>>> 61accc2eaa1f1e77c19d2541eb3b0a6d0c7497f4:Scripts/spike_ball.gd

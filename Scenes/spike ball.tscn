@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxlv8jias5evb"]
 
-[ext_resource type="Script" uid="uid://s4ia7jr8t5mi" path="res://spike_ball.gd" id="1_dfttp"]
+[ext_resource type="Script" uid="uid://s4ia7jr8t5mi" path="res://Scripts/spike_ball.gd" id="1_dfttp"]
 [ext_resource type="Texture2D" uid="uid://bv155eisegi2g" path="res://Sprites/Characters/other/character_0008.png" id="3_7mxjr"]
 
 [sub_resource type="Animation" id="Animation_chwpn"]
@@ -20,6 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_7i5or"]
 resource_name = "shake"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

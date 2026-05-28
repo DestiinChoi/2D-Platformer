@@ -19,6 +19,8 @@ var move_input : float
 @onready var audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var cointext = LabelSettings
 @onready var coinanim : AnimationPlayer = $CanvasLayer/CoinUi/CoinAnimation
+@onready var cam : Camera2D = $Camera2D
+@onready var ui_sound : AudioStreamPlayer = $UIsound
 
 var take_damage_sfx : AudioStream = preload("res://Audio/take_damage.wav")
 var coin_sfx : AudioStream = preload("res://Audio/coin.wav")
@@ -47,6 +49,8 @@ func _physics_process(delta):
 
 
 func _process(_delta):
+	
+	
 	if velocity.x != 0:
 		sprite.flip_h = velocity.x > 0 
 		
@@ -55,31 +59,16 @@ func _process(_delta):
 
 	manage_animation()
 
+	if Input.is_action_pressed("return_to_menu"):
+		call_deferred("game_over")
 	
-		
-	if get_tree().get_current_scene().get_name() == "level_1":
-		
-		if global_position.y > 250:
-			get_tree().change_scene_to_file("res://Scenes/level_1.tscn")
-			take_damage(1)
-		
-		
-	elif get_tree().get_current_scene().get_name() == "level_2":
-		
-		if global_position.y > 175:
-			get_tree().change_scene_to_file("res://Scenes/level_2.tscn")
-			take_damage(1)
-		
-	elif get_tree().get_current_scene().get_name() == "level_3":
-		
-		if global_position.y > 150:
-			get_tree().change_scene_to_file("res://Scenes/level_3.tscn")
-			take_damage(1)
-		
-	else:
-		pass
-		
+
 	
+	if global_position.y > 250:
+			
+			global_position = Vector2(0 , 0)
+			take_damage(1)
+			
 	
 
 
@@ -125,13 +114,24 @@ func damage_flash():
 func play_sound(sound : AudioStream):
 	audio.stream = sound
 	audio.play()
+	
+	
 
-
-
-
-
-
-
+func _on_settings_button_pressed() -> void:
+	ui_sound.play()
+	await ui_sound.finished
+	get_tree().paused = true
+	$"CanvasLayer/SettinsPopupMenu(INVIS)".show()
+	$CanvasLayer/SettingsButton.hide()
+	$"CanvasLayer/Sliders (INVIS)".show()
+	
+func _on_settings_exit_button_pressed() -> void:
+	
+	$"CanvasLayer/SettinsPopupMenu(INVIS)".hide()
+	$CanvasLayer/SettingsButton.show()
+	$"CanvasLayer/Sliders (INVIS)".hide()
+	get_tree().paused = false
+	ui_sound.play()
 
 
 
