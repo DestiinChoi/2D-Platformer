@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://vp16mmsap61e" path="res://Audio/UIclicksound.mp3" id="30_ypfnu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
+radius = 8.0
 height = 24.0
 
 [sub_resource type="Animation" id="Animation_fkybt"]
@@ -248,6 +249,7 @@ libraries = {
 bus = &"sfx"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("4_fkybt")
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer"]

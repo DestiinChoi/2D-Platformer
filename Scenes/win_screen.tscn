@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://crkftxpg8mcpn"]
+[gd_scene load_steps=17 format=4 uid="uid://crkftxpg8mcpn"]
 
 [ext_resource type="Script" uid="uid://dhdkrgum52pio" path="res://Scripts/win_screen.gd" id="1_85imr"]
 [ext_resource type="Texture2D" uid="uid://bvxcuokww408j" path="res://Sprites/YouWin.png" id="1_a00f1"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://7j5f58v817vc" path="res://Sprites/Characters/other/character_0025.png" id="10_6ufe8"]
 [ext_resource type="Texture2D" uid="uid://cw8ve08co5tms" path="res://Sprites/Characters/other/character_0024.png" id="11_qrg8t"]
 [ext_resource type="Texture2D" uid="uid://ccpqftl2qj5by" path="res://Sprites/Characters/other/character_0026.png" id="12_pe4lh"]
+[ext_resource type="AudioStream" uid="uid://vp16mmsap61e" path="res://Audio/UIclicksound.mp3" id="13_pe4lh"]
 
 [sub_resource type="Animation" id="Animation_6ufe8"]
 resource_name = "bird"
@@ -170,5 +171,9 @@ root_node = NodePath("../bird")
 libraries = {
 &"": SubResource("AnimationLibrary_qrg8t")
 }
+
+[node name="UIsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_pe4lh")
+bus = &"sfx"
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

@@ -468,4 +468,4 @@ position = Vector2(197, -33)
 position = Vector2(282, -34)
 
 [node name="Spikeball3" parent="Falling objects" instance=ExtResource("20_s80er")]
-position = Vector2(599, -69)
+position = Vector2(600, -90)

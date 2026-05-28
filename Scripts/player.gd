@@ -68,7 +68,7 @@ func _process(_delta):
 			
 			global_position = Vector2(0 , 0)
 			take_damage(1)
-	
+			
 	
 
 
